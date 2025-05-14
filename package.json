@@ -1,0 +1,32 @@
+{
+  "name": "senkou-discord-bot",
+  "version": "1.0.0",
+  "description": "Discord Bot Server for Senkou Studio",
+  "type": "module",
+  "main": "./src/main.js",
+  "scripts": {
+    "start": "nodemon ./src/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/studio-senkou/senkou-discord-bot.git"
+  },
+  "keywords": [
+    "Senkou",
+    "Discord",
+    "Bot"
+  ],
+  "author": "Aji Hamdani Ahmad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/studio-senkou/senkou-discord-bot/issues"
+  },
+  "homepage": "https://github.com/studio-senkou/senkou-discord-bot#readme",
+  "dependencies": {
+    "discord.js": "^14.19.3",
+    "dotenv": "^16.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
