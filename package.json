@@ -23,8 +23,11 @@
   },
   "homepage": "https://github.com/studio-senkou/senkou-discord-bot#readme",
   "dependencies": {
+    "auto-bind": "^5.0.1",
+    "body-parser": "^2.2.0",
     "discord.js": "^14.19.3",
-    "dotenv": "^16.5.0"
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"

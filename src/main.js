@@ -1,24 +1,46 @@
 import dotenv from 'dotenv';
-import { Client, GatewayIntentBits } from "discord.js"
+import bodyParser from 'body-parser';
+import App from './app.js';
+
+import DiscordService from './services/discord.js';
+
+import logs from "./handlers/log/index.js"
+
+const discordService = new DiscordService();
+discordService.init();
 
 dotenv.config();
 
-const client = new Client({
-    intents: [
-      GatewayIntentBits.Guilds,
-      GatewayIntentBits.GuildMessages,
-      GatewayIntentBits.MessageContent,
-    ]
-  });
+const app = new App()
 
-client.once('ready', () => {
-    console.info(`🤖 Logged in as ${client.user.tag}`)    
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.set("/", "GET", (req, res) => {
+    res.send("Hello world")
 })
 
-client.on('messageCreate', (message) => {
-    if (message.content === "!ping") {
-        message.reply('Pong!')
+app.register({
+   services: [
+     {
+        plugin: logs,
+        options: {
+            discordService, 
+        }
+     }
+   ]
+})
+
+app.use((err, req, res, next) => {
+    if (err instanceof Error) {
+        return res.status(500).json({
+            error: err.message,
+        })
     }
+
+    return res.status(500).json({
+        error: "Internal server error",
+    })
 })
 
-client.login(process.env.DISCORD_TOKEN)
+app.run()
