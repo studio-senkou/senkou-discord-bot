@@ -1,2 +1,10 @@
 /node_modules
+/cloudflared
 .env
+
+# Bun
+.bun
+dist/
+*.lockb.tmp
+node_modules/.cache
+.bun-build

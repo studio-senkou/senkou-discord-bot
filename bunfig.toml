@@ -1,0 +1,24 @@
+# Production-specific Bun configuration
+[install]
+exact = true
+production = true
+optional = false
+prefer = "offline"
+
+[build]
+outdir = "./dist"
+target = "bun"
+minify = true
+sourcemap = "external"
+splitting = false
+treeshake = false
+optimize = "size"
+compress = false
+format = "cjs"
+
+[run]
+hot = false
+watch = false
+
+[test]
+timeout = 10000

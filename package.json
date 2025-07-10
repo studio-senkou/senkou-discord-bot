@@ -5,7 +5,13 @@
   "type": "module",
   "main": "./src/main.js",
   "scripts": {
-    "start": "nodemon ./src/main.js"
+    "start": "bun run ./src/main.js",
+    "start:prod": "bun run ./dist/main.js",
+    "dev": "bun run --watch ./src/main.js",
+    "build": "bun build ./src/main.js --outdir ./dist --target bun",
+    "clean": "rm -rf ./dist node_modules/.cache",
+    "test": "bun test",
+    "analyze": "bun build ./src/main.js --analyze --target bun"
   },
   "repository": {
     "type": "git",
@@ -30,6 +36,6 @@
     "express": "^5.1.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "@types/node": "^22.10.1"
   }
 }
