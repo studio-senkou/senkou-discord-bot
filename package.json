@@ -3,15 +3,16 @@
   "version": "1.0.0",
   "description": "Discord Bot Server for Senkou Studio",
   "type": "module",
-  "main": "./src/main.js",
+  "main": "./src/main.ts",
   "scripts": {
-    "start": "bun run ./src/main.js",
+    "start": "bun run ./src/main.ts",
     "start:prod": "bun run ./dist/main.js",
-    "dev": "bun run --watch ./src/main.js",
-    "build": "bun build ./src/main.js --outdir ./dist --target bun",
+    "dev": "bun run --watch ./src/main.ts",
+    "build": "bunx tsc",
+    "build:bun": "bun build ./src/main.ts --outdir ./dist --target bun",
     "clean": "rm -rf ./dist node_modules/.cache",
     "test": "bun test",
-    "analyze": "bun build ./src/main.js --analyze --target bun"
+    "analyze": "bun build ./src/main.ts --analyze --target bun"
   },
   "repository": {
     "type": "git",
@@ -36,6 +37,9 @@
     "express": "^5.1.0"
   },
   "devDependencies": {
-    "@types/node": "^22.10.1"
+    "@types/body-parser": "^1.19.6",
+    "@types/express": "^5.0.3",
+    "@types/node": "^22.10.1",
+    "typescript": "^5.8.3"
   }
 }

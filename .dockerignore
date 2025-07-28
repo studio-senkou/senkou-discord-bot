@@ -1,0 +1,3 @@
+dist/
+cloudflared/
+node_modules/

@@ -1,9 +1,9 @@
 # Production-specific Bun configuration
 [install]
-exact = true
-production = true
-optional = false
-prefer = "offline"
+exact = false
+production = false
+optional = true
+prefer = "online"
 
 [build]
 outdir = "./dist"
@@ -14,7 +14,7 @@ splitting = false
 treeshake = false
 optimize = "size"
 compress = false
-format = "cjs"
+format = "esm"
 
 [run]
 hot = false

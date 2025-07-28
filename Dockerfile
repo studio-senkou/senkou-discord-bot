@@ -2,17 +2,17 @@ FROM oven/bun:1-alpine
 
 WORKDIR /app
 
-COPY package.json bun.lock bunfig.toml ./
+COPY package.json bun.lockb* bunfig.toml ./
 
-ENV NODE_ENV=production
-
-RUN bun install --production --frozen-lockfile
+RUN bun install --frozen-lockfile
 
 COPY . .
 
 RUN bun run build
 
-RUN rm -rf src/ node_modules/.cache
+RUN rm -rf src/ tsconfig.json && \
+    bun install --production --frozen-lockfile && \
+    rm -rf node_modules/.cache
 
 EXPOSE 8787
 
