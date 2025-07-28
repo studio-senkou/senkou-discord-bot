@@ -2,12 +2,15 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import { Client, GatewayIntentBits, TextChannel } from "discord.js";
+import { ChatHandler } from "../handlers/chat/handler";
+import { GenAIService } from "./genai";
 
 export default class DiscordService {
   private client: Client | null;
   private token: string;
+  private chatHandler: ChatHandler;
 
-  constructor() {
+  constructor(model: GenAIService) {
     this.client = null;
     this.token = process.env.DISCORD_TOKEN as string;
 
@@ -22,6 +25,8 @@ export default class DiscordService {
         GatewayIntentBits.MessageContent,
       ],
     });
+
+    this.chatHandler = new ChatHandler(model);
   }
 
   init(): void {
@@ -52,6 +57,18 @@ export default class DiscordService {
       console.error("Error sending message:", error);
       throw error;
     }
+  }
+
+  setupEventListeners(): void {
+    if (!this.client) return;
+
+    this.client.on("messageCreate", (message) => {
+      this.chatHandler.handle(message);
+    });
+
+    this.client.on("error", (error) => {
+      console.error("Discord client error:", error);
+    });
   }
 
   getClient(): Client | null {

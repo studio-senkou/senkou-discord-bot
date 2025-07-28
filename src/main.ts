@@ -6,9 +6,13 @@ import App from "./app.js";
 import DiscordService from "./services/discord.js";
 
 import logs from "./handlers/log/index.js";
+import { GenAIService } from "./services/genai.js";
 
-const discordService = new DiscordService();
+const genAIService = new GenAIService(process.env.GEMINI_API_KEY!);
+const discordService = new DiscordService(genAIService);
+
 discordService.init();
+discordService.setupEventListeners();
 
 dotenv.config();
 
@@ -32,7 +36,7 @@ app.register({
   ],
 });
 
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+app.use((err: Error, _: Request, res: Response, next: NextFunction) => {
   if (err instanceof Error) {
     return res.status(500).json({
       error: err.message,

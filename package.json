@@ -30,6 +30,7 @@
   },
   "homepage": "https://github.com/studio-senkou/senkou-discord-bot#readme",
   "dependencies": {
+    "@google/generative-ai": "^0.24.1",
     "auto-bind": "^5.0.1",
     "body-parser": "^2.2.0",
     "discord.js": "^14.19.3",
